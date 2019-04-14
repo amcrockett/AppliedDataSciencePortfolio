@@ -1,0 +1,586 @@
+1,1,Schafly Pilsner,Pilsner,5,Year-Round
+3,1,Schafly Kolsch,Kolsch,4.8,Year-Round
+4,1,Schafly Pale Ale,Pale Ale,4.4,Year-Round
+5,1,Schafly Hefeweizen,Hefeweizen,4.1,Year-Round
+6,1,Dry Hopped APA,American Ale,5.9,Year-Round
+7,1,Summer Lager,Lager,4.5,Summer
+8,1,Oatmeal Stout,Stout,5.7,Year-Round
+9,1,Oktoberfest,Lager,5.5,Fall
+10,1,Winter ESB Ale,Ale,5.8,Winter
+11,1,Raspberry Hefeweizen,Hefeweizen,4.1,Summer
+12,1,Schafly Porter,Porter,5.4,Fall
+13,1,Coffee Stout,Stout,5.4,Winter
+14,1,Extra Stout,Irish Stout,8,Winter
+15,1,Schafly IPA,IPA,7,Spring
+16,1,American IPA,IPA,7.2,Summer
+17,1,Pumpkin Ale,Pumpkin Ale,8,Fall
+18,1,Christmas Ale,Ale,8,Winter
+19,1,Imperial Stout,Stout,10.5,Year-Round
+20,1,Barleywine-Style Ale,Ale,10.2,Year-Round
+21,1,Biere de Garde,Ale,7,Year-Round
+22,1,Grand Cru Ale,Ale,9,Year-Round
+23,1,Tripez,Ale,10,Year-Round
+24,1,Quad Rupel Ale,Ale,12,Year-Round
+25,2,Atheist Ale ,IPA,7,Year-Round
+26,2,Hop Lock & Drop It,Pale Ale,5,Fall
+27,2,Believers Brew ,Stout,7,Year-Round
+28,2,Passport Pale Ale ,Pale Ale,5,Year-Round
+29,2,Satanic Saison ,Saison,8,Summer
+30,2,Capulus,Stout,7,Year-Round
+31,2,Braun ,Brown Ale,7,Year-Round
+32,2,Delphian,Blonde Ale,7,Year-Round
+33,2,Pinot Saison,Saison,7,Year-Round
+34,2,Apocryph,Saison,7,Year-Round
+35,3,citrapolis, IPA,6.8,Year-Round
+36,3,Odinson,IPA,6.6,Year-Round
+37,3,All Black,IPA,6.5,Winter
+38,3,Arkham's Finest,Stout,8,Winter
+39,3,The Heeler,Pale Ale,6.5,Spring
+40,3,Mon Precieux,Tripel,7.8,
+41,3,Clandestine,Belgian Brown Ale,6.8,Spring
+42,3,Ms. Sally,Pilsner,4.8,
+43,3,Dew Brew,Ale,5.5,Year-Round
+44,4,Winged Nut,Ale,5.2,Year-Round
+45,4,Hopfen,Lager,6.1,Year-Round
+46,4,Zwickel,Pilsner,5.1,Year-Round
+47,4,Schnickelfritz,Pilsner,5,Year-Round
+48,4,Pierre's Wit,Wheat Lager,5.2,Year-Round
+49,4,Erlkonig,Wheat Lager,8,Year-Round
+50,4,Schlossturm,Lager,5.2,Year-Round
+51,4,Ku'damn,Lager,4.2,Year-Round
+52,4,Stammtissch,Pilsner,5.4,Year-Round
+53,4,Dorfbier,Lager,5.2,Year-Round
+54,4,Teufelspakt,Black Lager,4.7,Year-Round
+55,4,Mercator,Sour Pilsner,6.3,Year-Round
+56,4,Apotheosis,Saison,5.3,Year-Round
+57,4,Fantasyland,IPA,6.5,Year-Round
+58,4,Holzrauch,Smoked Beer,5.3,Year-Round
+59,4,O'Florian's,Stout,4.2,Year-Round
+60,4,Oxnbrau,Pilsner,8,Year-Round
+61,4,Kinsale,Stout,7,Year-Round
+62,4,Xaver,Pilsner,5.8,Year-Round
+63,4,Innovator,Pale Ale,10.5,Year-Round
+64,4,Forest Park Pilsner,Pilsner,5.2,Year-Round
+65,4,Reine Liebe,Pilsner,5,Year-Round
+66,4,Powell 50,Red Ale,4.6,Year-Round
+67,4,Wolpertinger,Pilsner,11,Year-Round
+68,4,Vanilla Mint  Kinsale,Stout,7,Year-Round
+69,4,Urban Underdog,American Lager,4.5,Year-Round
+70,5,Art of Neurosis,IPA,7.6,Year-Round
+71,5,Brewcocky,Double IPA,9.3,Year-Round
+72,5,El Gato Grande,IPA,7.6,Year-Round
+73,5,Green Bird Gose,Lager,4.5,Year-Round
+74,5,Hibiscus Wit,Wheat Lager,5.2,Year-Round
+75,5,Katy,Saison,5.4,Year-Round
+76,5,Little,Big Hop,4.9,Year-Round
+77,5,Sub-Mission,IPA,6,Year-Round
+78,5,Technical Ecstacy,Pilsner,5.4,Year-Round
+79,5,Brewligans,IPA,6.5,Year-Round
+80,5,Cat Spit Stout,Stout,7,Year-Round
+81,5,Liquid Spiritual Delight,stout,11.5,Year-Round
+82,5,Weiss & Virtue,Hefeweizen,5.1,Year-Round
+83,5,Yippie Rye-Yay,IPA,6,Year-Round
+84,6,STL Best Ale,Ale,4,Year-Round
+85,6,American Borown Ale,Brown Ale,5.5,Year-Round
+86,6,The Angel and the Sword,Ale,4.6,Year-Round
+87,6,Brown Ale,Brown Ale,4.8,Year-Round
+88,6,Rye Pale Ale,Rye Pale Ale,4.5,Year-Round
+89,6,Stevies' 5 Star,Amber Ale,5,Year-Round
+90,6,70 Shilling,Scottish Ale,3.5,Year-Round
+91,6,Civil Life Ale,Cream Ale,4.3,Year-Round
+92,6,Civil Life Alt,Ale,4.9,Year-Round
+93,6,American Session Ale,Pale Ale,4.2,Year-Round
+94,6,Civil Life Blonde,Ale,7,Year-Round
+95,6,Belgian Dubbel,Ale,6,Year-Round
+96,6,Big American Stout,Stout,6.4,Year-Round
+97,6,Big Year Brown,Brown Ale,6,Year-Round
+98,6,Black Ale,Ale,6,Year-Round
+99,6,British Bitter,English Ale,4.3,Year-Round
+100,6,British Bitter Mild,English Ale,4.2,Year-Round
+101,7,Session Ale,Ale,4.6,Year-Round
+102,7,Dry Brown,Ale,5.4,Winter
+103,7,Mahlab ESB,English Ale,5.2,Year-Round
+104,7,Copper ale,Ale,4.7,Winter
+105,7,Porter,Porter,5.6,Year-Round
+106,7,#Basic Blonde,Blonde Ale,5.1,Year-Round
+107,7,AIPA,IPA,5.7,Year-Round
+108,7,Meteor IPA,IPA,5,Year-Round
+109,7,Peacon Chicory Stout,Stout,5.5,Year-Round
+110,7,Thia Basil IPA,IPA,6,Winter
+111,7,Hopped Wheat,Wheat Lager,4.6,Year-Round
+112,7,Second Lunch Pale Ale,Pale Ale,4.5,Year-Round
+113,7,Jasmine Gose,Lager,5.1,Winter
+114,8,Vanilla Cream Ale,Ale,5.5,Year-Round
+115,8,Ryane's Red,Amber Ale,6.8,Year-Round
+116,8,IPA,IPA,6.2,Year-Round
+117,8,Imperial Pumpkin Porter,Porter,9,Fall
+118,9,Minivan Maestro,Hefeweizen,4.6,Year-Round
+119,9,Old Dog Skip,Lager,4.9,Year-Round
+120,9,Caroline ,Pale Ale,5.7,Year-Round
+121,9,Seperation Anxiety,Lager,8.3,Year-Round
+122,9,Pizza Bones,IPA,5.9,Year-Round
+123,9,Bunk's Belgian,Belgian Ale,5.5,Year-Round
+124,10,Apricot Layla,Ale,6,Year-Round
+125,10,Black Dog,Porter,9,Year-Round
+126,10,Bohemian Rhaspberry,Ale,6,Year-Round
+127,10,Crowd Surfer,Pale Ale,5.7,Year-Round
+128,10,Kiss The Sky,Rye IPA,9,Year-Round
+129,10,Layla,Sour Ale,6,Year-Round
+130,10,Left Coast Envy IPA,IPA,6.7,Year-Round
+131,10,Petty Wage,Saison,5.8,Year-Round
+132,10,Prison Bound,Pale Ale,5.4,Year-Round
+133,10,Ruby Soho IPA,IPA,6.8,Year-Round
+134,10,Squeeze Box Lemon Wheat,Wheat Ale,4.8,Year-Round
+135,10,Vanilla Coffee Underbrown,Brown Ale,6.5,Year-Round
+136,10,Velvet Underbrown,Brown Ale,6.5,Year-Round
+137,11,Ale Fleur One,Pale Ale,4.7,Year-Round
+138,11,Sugar Creek Lager,Lager,4.2,Year-Round
+139,11,Pumpkin Ale,Pumpkin Ale,5.8,Fall
+140,11,Spring Fling,Wheat Ale,3.1,Spring
+141,11,Green Mistress,Ale,8.3,Year-Round
+142,11,Super Chief IPA,IPA,6.1,Spring
+143,11,Midnight Train ,Black Lager,4.8,Year-Round
+144,11,Blackberry Wheat,Wheat Ale,4.8,Year-Round
+145,11,Lord Otto's Porter,Porter,6.1,Year-Round
+146,11,Peaberry Coffee Stout,Stout,10.2,Year-Round
+147,11,Red IPA,IPA,10.2,Year-Round
+148,11,Big Five – OH,Ale,8.2,Spring
+149,11,Paddy Shack Red,Red Ale,5.1,Spring
+150,12,Belgian Small Beer,Wheat Ale,5.2,Year-Round
+151,12,Belgian Steam Beer,Wheat Ale,5.2,Year-Round
+152,12,Belgian Ale,Wheat Ale,5.2,Year-Round
+153,12,Belgian Porter,Porter,5.2,Year-Round
+154,12,Belgian Summer,Wheat Ale,5.2,Summer
+155,13,Rambler's Red Ale,Red Ale,5.5,Year-Round
+156,13,Halley's Blueberry Saison,Saison,6.8,Year-Round
+157,13,Jumping Frog IPA,IPA,6.5,Year-Round
+158,13,Huck Finn's Habanero Apricot Wheat,Wheat Ale,5.5,Year-Round
+159,13,Clemens Kolsch,Kolsch,4.4,Year-Round
+160,13,King Arthur's Court Imperial IPA,IPA,8.2,Year-Round
+161,14,DDH OJ Run,Double IPA,8.6,Year-Round
+162,14,DDH Cloud City,Double IPA,7,Year-Round
+163,14,Old Town Porter Hot Java,Porter,5.7,Spring
+164,14,King Fallen Flag,Double IPA,8.6,Spring
+165,14,Tableau de Fluers,Saison,4.7,Spring
+166,15,Rod's Cream Ale,Cream Ale,5.3,Year-Round
+167,15,Hide and Seek Hefeweizen,Hefeweizen,4.9,Year-Round
+168,15,Frisco 1501 Historic Lager,Lager,5,Year-Round
+169,15,Elusive IPA,IPA,6.8,Year-Round
+170,15,Revelation Stout,Stout,5.4,Year-Round
+171,15,Flynn's Irish Red,Red Ale,5,Spring
+172,15,Farmstand Peach Ale,Ale,5.3,Summer
+173,15,Courtship Cranberry Ale,Ale,6.1,Fall
+174,15,Giddy Goat Coffee Milk Stout,Stout,5.5,Winter
+175,15,Soest Road,Ale,6.5,Fall
+176,15,Level 2 Fall Risk,IPA,8.7,Fall
+177,15,Provision,Ale,7,Year-Round
+178,15,Vignoles,IPA,6.8,Year-Round
+179,15,Anthony's Pacification,Stout,10,Winter
+180,15,Dry Fly IPA,IPA,4.9,Year-Round
+181,15,Sticke It Up Your Alt,Lager,5.5,Year-Round
+182,16,Bavarian Hefeweizen,Hefeweizen,5.2,Year-Round
+183,16,Belgian Dubbel,Ale,8,Winter
+184,16,Blood Orange Wit,Wheat Ale,4.7,Summer
+185,16,Cinnamon Maple Stout,Stout,8,Winter
+186,16,Coffee Maple Stout,stout,6,Winter
+187,16,Cranberry Wheat,Wheat Ale,4.7,Fall
+188,16,Double Dry Hopped Citra IPA,IPA,6,Spring
+189,16,El Dorado IPA,IPA,6.8,Spring
+190,16,French Saison,Saison,5.4,Year-Round
+191,16,Galaxy IPA,IPA,6.8,Summer
+192,16,Harvest Peach Saison,Saison,5.4,Summer
+193,16,Irish Red Ale With Honey,Red Ale,5.5,Year-Round
+194,16,Irish Stout,Stout,5.2,Year-Round
+195,16,Mango Hibiscus Blonde,Blonde Ale,4.7,Summer
+196,16,Red IPA,IPA,6.7,Year-Round
+197,16,Robust Porter with Ancho,Porter,8,Winter
+198,17,Going Once. Going Twice.,Sour Ale,3.9,Year-Round
+199,17,Ophelia's Wit,Wheat Ale,5.4,Year-Round
+200,17,Broken Arm Blonde ,Blonde Ale,5.2,Year-Round
+201,17,Hidden Pool ,Pilsner,6.4,Year-Round
+202,17,Green Beer,Stout,4.8,Spring
+203,17,Goomah,Stout,5.5,Year-Round
+204,17,Capo,Stout,7.5,Year-Round
+205,17,Hanging Pants,Pale Ale,5.8,Year-Round
+206,17,Enter Sandman,Red Ale,6,Year-Round
+207,17,Quit Your Day Job,Brown Ale,6.9,Year-Round
+208,17,Spandex Spector,Ale,6.3,Year-Round
+209,17,Saint Peters' Porter,Porter,6.8,Year-Round
+210,17,Saint Peters' Porter With Coffee,Porter,6.8,Year-Round
+211,17,Orbital Contusion,Black IPA,7.4,Year-Round
+212,17,Dyslexic API,Double IPA,8.8,Year-Round
+213,17,Dabble In the Snooze,Ale,8.5,Year-Round
+214,18,Trailblazer Blonde Ale,Blonde Ale,5,Year-Round
+215,18,Trailhead Red Amber Ale ,Amber Ale,5.2,Year-Round
+216,18,Missouri Brown Dark Ale,Ale,5.2,Year-Round
+217,18,Riverboat Raspberry,Wheat Ale,4.8,Year-Round
+218,18,Old Courthouse Stout,Stout,5.3,Year-Round
+219,18,Irish Ale,Ale,5.1,Spring
+220,19, Amarillo-Man ,IPA,7.4,Year-Round
+221,19, Wielki Lubelski ,Pilsner,4.7,Year-Round
+222,19,Healing Potion Red Ale ,Red Ale,5.5,Year-Round
+223,19,Hops Gruber ,Ale,5.9,Year-Round
+224,19,Motazuma's Blessing ,Stout,7.7,Year-Round
+225,20,Heavenly Body NA Golden Wheat,Wheat Ale,0.5,Year-Round
+226,20,Hellraiser NA Dark Amber,Amber Ale,0.5,Year-Round
+227,21,Kraftig Lager,Lager,5,Year-Round
+228,21,Kraftig Light,Lager,4.2,Year-Round
+229,22,Golden Pilsner,Pilsner,5,Year-Round
+230,22,Winter Lager,Lager,5.4,Winter
+231,22,Baltic Porter,Porter,9.4,Winter
+232,22,Black Bear,Ale,4.6,Year-Round
+233,22,Honey Wheat,Wheat Ale,4.7,Year-Round
+234,22,Virgin Territory,IPA,5.5,Year-Round
+235,22,Dopplebock,Lager,8.1,Year-Round
+236,23,Jaden's Schwarz,Dark Lager,5.3,Year-Round
+237,23,Light Squared,Ale,4.3,Year-Round
+238,23,Park Avenue Pale Ale,Pale Ale,5.5,Year-Round
+239,23,Bavarian Weizen,Lager,4.7,Year-Round
+240,23,2018 I.P.A.,IPA,6.3,Year-Round
+241,23,Barley Wine,Ale,12.3,Year-Round
+242,23,Irish Stout,Stout,5.8,Year-Round
+243,23,Maple Stout,Stout,5.8,Year-Round
+244,23,DoublePilsner,Pilsner,9.1,Year-Round
+245,23,Single Malt Scotch Ale,Scotch Ale,12.3,Year-Round
+246,23,Imperial IPA,IPA,9.2,Year-Round
+247,23,Dunkel Weizen,Hefeweizen,5.3,Year-Round
+248,24,Til the Night Closes In,Stout,9,Year-Round
+249,24,17,Stout,10,Winter
+250,24,Abraxas,Ale,10,Year-Round
+251,24,Anniversaria,Pale Ale,7.7,Year-Round
+252,24,Aria,Ale,7.2,Year-Round
+253,24,Bailey's Chocolate Ale,Ale,4.8,Year-Round
+254,24,Barrel-Aged 17,Stout,11.5,Year-Round
+255,24,Barrel-Aged Abraxas,Ale,11,Year-Round
+256,24,Barrel-Aged Sump Coffee Stout,Stout,11.5,Year-Round
+257,24,Barrel-Aged Vermillion,Ale,13.7,Year-Round
+258,24,Brew for the Crew,Lager,5.7,Year-Round
+259,24,Camper's Reserve,Pale Ale,5.9,Fall
+260,24,Cave Torch,IPA,6.7,Year-Round
+261,24,Citra Paradisi,Saison,5,Summer
+262,24,Coffee Abrax,Ale,10,Year-Round
+263,24,Corial de Sang,Saison,5,Summer
+264,24,Devil's Heart of Gold,Ale,11.5,Year-Round
+265,24,Distant Land,Saison,6.2,Winter
+266,24,Dual Artisanship,Saison,6.9,Year-Round
+267,24,Dubbel Block,Ale,7,Year-Round
+268,24,Edgewild Saison,Saison,5,Year-Round
+269,24,Fantasic Voyage,Stout,8.8,Year-Round
+270,24,Fete de Noel,Dark Ale,10,Winter
+271,24,Five Little Monkeys,Pale Ale,6.1,
+272,24,Flat Rock Saison,Saison,5,Year-Round
+273,24,Flume,Wheat Ale,5,Summer
+274,24,Foeder Saison,Saison,5,Summer
+275,24,Funky Wit,Wheat Ale,5,Year-Round
+276,24,Funky Wit Apricot,Wheat Ale,5,Summer
+277,24,Funky Wit Raspberry,Wheat Ale,5,Summer
+278,24,Funky Wit Raspberry Rhubarb,Wheat Ale,5,Summer
+279,24,Glitter and Gold,Ale,6.5,Spring
+280,24,Goodnight Irene,Ale,9,Year-Round
+281,24,Handshake Drugs,IPA,6.4,Year-Round
+282,24,Heart of Gold,Wheat Ale,10,Year-Round
+283,24,Hereafter,Ale,8,
+284,24,Hommel Bier,Pale Ale,5.9,Year-Round
+285,24,Hopfenta,Wheat Ale,4.2,Summer
+286,24,Irene,Ale,9,Year-Round
+287,24,Jack Rose,Ale,8,Year-Round
+288,24,Keith's Korner,IPA,6,Summer
+289,24,La Boheme,Ale,6,Year-Round
+290,24,Maman,Stout,11,Year-Round
+291,24,Meriwether,Saison,5.5,Year-Round
+292,24,Mon Ami,Ale,10,
+293,24,Ollie Ollie Oxen Free,IPA,4.5,Year-Round
+294,24,On Y Va,Saison,6.6,Spring
+295,24,Owen,Ale,4.7,
+296,24,Peace Offering,Brown Ale,6.3,Fall
+297,24,Peach Berliner Weisse,Ale,4.2,Summer
+298,24,Philly Taco,Brown Ale,7,
+299,24,Pils,Pilsner,5,Summer
+300,24,Pineapple Kumquat Berliner Weisse,Wheat Ale,4.2,Summer
+301,24,Plan B,Dark Ale,8,
+302,24,Prodigal,Stout,10.6,Year-Round
+303,24,Regalia,Saison,8.5,Year-Round
+304,24,Reverie,Ale,12,Year-Round
+305,24,Saison de Lis,Saison,5,Spring
+306,24,Saant Beersel,Pale Ale,8,Spring
+307,24,SavantBlanc,Sour Ale,8,Summer
+308,24,Ship of the Sun,Saison,5.5,Spring
+309,24,Southside Blonde,Blonde Ale,5,Year-Round
+310,24,Static Electricity,IPA,8,Year-Round
+311,24,Stefon,Ale,7.1,Year-Round
+312,24,Suburban Beverage,Ale,4.2,Summer
+313,24,Sump Coffee Stout,Stout,10.5,Year-Round
+314,24,Two Tugs,Brown Ale,8,Year-Round
+315,24,Vermillion Barlywine,Ale,13.6,Year-Round
+316,24,Von Pampelmuse,Wheat Ale,4.2,Summer
+317,24,White Impala,Wheat Ale,6,Spring
+318,24,Woodside ,Ale,9.1,Fall
+319,24,Working Title,Pale Ale,6.2,Winter
+320,25,Scotch Ale,Scotch Ale,9.2,Winter
+321,25,Nectarine Habanero IPA,IPA,7.7,Summer
+322,25,Baltic Porter,Porter,7.9,Fall
+323,25,Bavarian Wheatwine,Wheat Ale,10.5,Spring
+324,25,Golden Blonde,Blonde Ale,4.5,Year-Round
+325,25,Unfiltered German Pilsner,Pilsner,5,Year-Round
+326,25,Hefeweizen,Hefeweizen,4.7,Year-Round
+327,25,St. Louis Pale Ale,Pale Ale,5.1,Year-Round
+328,25,Imperial IPA,IPA,8,Year-Round
+329,25,Pecan Brown Ale,Brown Ale,5.5,Year-Round
+330,25,Oatmeal Stout,Stout,5.5,Year-Round
+331,25,Irish Red ,Red Ale,5.5,Year-Round
+332,26,American Golden Ale,Ale,5.4,Year-Round
+333,26,Hop Shelf IPA,IPA,6.4,Year-Round
+334,26,Ugly Hockey Christmas Sweater Stout,Stout,7,Winter
+335,26,Nash Year's Eve Imperial Blonde Ale,Blonde Ale,12.1,Winter
+336,27,2101 Pale Ale,Pale Ale,5.5,Year-Round
+337,27,Barleywine,Ale,12,Year-Round
+338,27,Tornado Alley Amber Ale,Amber Ale,5,Year-Round
+339,27,Hoptimistic IPA,IPA,6.5,Year-Round
+340,27,Half-Wit Wheat,Wheat Ale,4.5,Year-Round
+341,27,Paul's Pils,Pilsner,6.3,Summer
+342,27,Box of Chocolate,Ale,10.5,Winter
+343,27,Long White Cloud,Pilsner,5,Spring
+344,27,Late Night Karate Kicks,Stout,6.3,Fall
+345,28,Abricot du Fermier,Saison,8,Year-Round
+346,28,Anabasis,Ale,14,Year-Round
+347,28,Balaton,Brown Ale,5,Year-Round
+348,28,Beer : Barrel : Time,Stout,15,Year-Round
+349,28,Biere Blanche,Wheat Ale,5,Year-Round
+350,28,Biere du Pays,Saison,4,Year-Round
+351,28,La Biere de Fantaisie,Ale,7,Year-Round
+352,28,Black & Berry,Dark Ale,10,Year-Round
+353,28,Blanc de Blancs,Ale,10,Year-Round
+354,28,Black & Wild,Ale,10,Year-Round
+355,28,Bleuet du Fermier,Saison,8,Year-Round
+356,28,Blueberry Flanders,Red Ale,7,Year-Round
+357,28,Brett Project,Saison,6,Year-Round
+358,28,Brett Venture,Saison,6,Year-Round
+359,28,Bretta Sang,Sour Ale,7,Year-Round
+360,28,Derivation,Stout,15,Year-Round
+361,28,Double Barrel Derivation,Stout,15,Year-Round
+362,28,Fencerow,Ale,6,Year-Round
+363,28,La Fosse,Ale,7,Year-Round
+364,28,Framboise du Fermier,Saison,8,Year-Round
+365,28,Fuzzy,Ale,8,Year-Round
+366,28,Grisette,Blonde Ale,4,Year-Round
+367,28,Jammy,Saison,8,Year-Round
+368,28,Langst,Ale,10,Year-Round
+369,28,Lattice,Pale Ale,6,Year-Round
+370,28,Leaner,Saison,8,Year-Round
+371,28,Marietta Ave.,Pale Ale,6,Year-Round
+372,28,Merci,Saison,6,Year-Round
+373,28,Noir du Fermier,Dark Ale,7,Year-Round
+374,28,Orviamo,Ale,10,Year-Round
+375,28,Oude du Ble,Saison,6,Year-Round
+376,28,Oude Fermier,Saison,7,Year-Round
+377,28,Peche du Fermier,Saison,8,Year-Round
+378,28,Pulling Nails,Sour Ale,6,Year-Round
+379,28,Punchdown,Ale,7,Year-Round
+380,28,Rose du Ble,Saison,6,Year-Round
+381,28,La Ruche,Saison,6,Year-Round
+382,28,Saison du Ble,Saison,6,Year-Round
+383,28,Saison du Fermier,Saison,7,Year-Round
+384,28,Saison du Fermier - Pinot Noir Puncheons,Saison,7,Year-Round
+385,28,Saison du Fermier - American Oak Foedre,Saison,7,Year-Round
+386,28,Saison de Rouge,Saison,7,Year-Round
+387,28,Le Saisonnier,Saison,4.8,Year-Round
+388,28,Smooth,Ale,6,Year-Round
+389,28,Styrbjorn,Ale,14,Year-Round
+390,28,Tete de Cuvee,Saison,6,Year-Round
+391,28,Thicket,Ale,6,Year-Round
+392,28,Unblended #25,Ale,10,Year-Round
+393,28,Unblended #40,Ale,6,Year-Round
+394,28,Trail Dubbel,Ale,10,Year-Round
+395,28,Vintage 2014,Ale,8,Year-Round
+396,29,American IPA 1216,IPA,6,Year-Round
+397,29,Cream Ale,Cream Ale,5,Year-Round
+398,29,Au Frau,Blonde Ale,4.8,Spring
+399,29,Cerassus,Wheat Ale,5,Year-Round
+400,29,Constant Clockwork ,IPA,6.2,Year-Round
+401,29,Pinion Porter,Porter,6.2,Year-Round
+402,29,Nuns Habit,Ale,4,Spring
+403,29,Maestro's Beer,Amber Ale,6,Year-Round
+404,29,Rusty Shackle ,Red Ale,5,Year-Round
+405,29,Zeppelin,Kolsch,4.8,Year-Round
+406,29,St. Draconius,Ale,6.7,Winter
+407,29,Vulcans Hammer,Dark Ale,7,Winter
+408,30,City Wide,Pale Ale,5.5,Year-Round
+409,30,City Wide Pils,Pilsner,5.5,Year-Round
+410,30,Single Speed,Blonde Ale,5,Year-Round
+411,30,Divided Sky Rye IPA,Rye IPA,6.5,Year-Round
+412,30,Cast Iron Oatmeal Stout,Stout,5.5,Year-Round
+413,30,Incarnation,IPA,7,Year-Round
+414,30,Contact High,Wheat Ale,5,Spring
+415,30,War Hammer Imperial IPA,IPA,9,Spring
+416,30,Ca$h Mony,IPA,8.5,Winter
+417,30,Snake Oil,IPA,6.5,Winter
+418,30,Passion Fruit Prussia,Wheat Ale,4,Summer
+419,30,Cuvee Ange,Ale,5.5,Spring
+420,30,Chocolate Milk Stout,Stout,5.5,Winter
+421,30,Bona Fide Imperial Stout,Stout,8.5,Winter
+422,30,Send Help,Blonde Ale,4.5,Summer
+423,30,Absence of Light,Stout,7.1,Winter
+424,30,Plush,Saison,6.8,Winter
+425,30,Madagascar,Stout,9.3,Winter
+426,30,License to Dance,Ale,6,Winter
+427,30,Kriek,Ale,5,Winter
+428,30,Guava King,Blonde Ale,4.5,Spring
+429,30,Dakine,IPA,6,Spring
+430,30,White Flannel,IPA,9,Spring
+431,30,Table IPA,IPA,4,Spring
+432,30,Loose Particles,IPA,8,Summer
+433,30,Typhon,Saison,6.5,Summer
+434,30,Super Flare,IPA,7.5,Summer
+435,30,City Museum Pils,Pilsner,5,Year-Round
+436,30,Forbidden Fuzz,Ale,4.5,Summer
+437,30,On Cue,Ale,4.5,Summer
+438,30,Hopeless Romantic,Saison,6,Summer
+439,30,Lemon Gose,Wheat Ale,4.5,Summer
+440,30,Liquid IPA,IPA,7.5,Fall
+441,30,Bone of Contention,Saison,5,Fall
+442,30,Zellige,Stout,7.5,Fall
+443,30,Genevieve,Wheat Ale,5.5,Fall
+444,30,Azza,Stout,13.5,Fall
+445,30,La Belleza,Stout,10.5,Fall
+446,30,Ba Bona Fide,Stout,10,Winter
+447,31,1867 IPA,IPA,7,Year-Round
+448,31,Augusta Barley Wine,Ale,9.5,Year-Round
+449,31,Augusta Butch's Stout,Stout,4.9,Year-Round
+450,31,Augusta Cecelia's Hefe,Hefeweizen,5.3,Year-Round
+451,31,Augusta Dingo Double IPA,Double IPA,9.2,Year-Round
+452,31,Augusta ESB,Ale,5.6,Year-Round
+453,31,Augusta Jack's Blonde,Blonde Ale,4.7,Year-Round
+454,31,Augusta Jonquil,Dark Ale,7.6,Year-Round
+455,31,Augusta Pilsner,Pilsner,5.8,Year-Round
+456,31,Augusta Roggen Rye Ale,Rye Ale,5.4,Year-Round
+457,31,Augusta Saison,Saison,6.5,Year-Round
+458,31,Augusta Schwarzbier,Dark Ale,5.4,Year-Round
+459,31,Augusta Swamp Ass Double IPA,Double IPA,7.8,Summer
+460,31,Augusta Tripel,Ale,9,Winter
+461,31,Augusta Tripel IPA,IPA,9,Winter
+462,31,Augusta Winter Ale,Ale,7,Winter
+463,31,Augusta Witbier,Wheat Ale,5,Year-Round
+464,31,Citra 7,IPA,8,Summer
+465,31,Dark Chocolate,Porter,5.6,Winter
+466,31,Jaded Bitch,Porter,8,Fall
+467,32, Golden Pilsner,Pilsner,5.3,Year-Round
+468,32,Unfiltered Bavarian-Style Wheat,Wheat Ale,4.8,Year-Round
+469,32,Mild Pale Ale,Pale Ale,5,Year-Round
+470,33,Belgian White,Wheat Ale,5.8,Year-Round
+471,33,Perfect Storm Pale Ale,Pale Ale,5.5,Year-Round
+472,33,Dirty Laundry Brown Ale,Brown Ale,5.6,Year-Round
+473,33,Citra IPL,IPA,5.1,Year-Round
+474,33,Mosaic IPA,IPA,6.2,Year-Round
+475,33,Smoked Cherrywood Wheat,Wheat Ale,7.1,Spring
+476,34,O'Fallon Gold,Ale,5,Year-Round
+477,34,O'Fallon 5 Day IPA,IPA,6.1,Year-Round
+478,34,Wheach,Wheat Ale,5,Year-Round
+479,34,Hemp Hop Rye,Amber Ale,5.5,Year-Round
+480,34,Smoke Porter,Porter,6,Year-Round
+481,34,O'Fallon Westport Wheat,Wheat Ale,5.1,Year-Round
+482,34,Show Me IPA,IPA,6.5,Year-Round
+483,34,STL Red,Red Ale,5.6,Year-Round
+484,34,Bottlehouse ,Brown Ale,4.9,Year-Round
+485,34,King Louie,Stout,6.3,Winter
+486,34,Cherry Chocolate,Wheat Ale,5.7,Winter
+487,34,Big Walt,Pilsner,5,Winter
+488,34,Chinook Me All Night Long,Double IPA,8.2,Winter
+489,34,Dunkel Down,Lager,5.1,Winter
+490,34,Heads Up,Lager,5.5,Winter
+491,34,Quest for the Galaxy,Pale Ale,5.1,Winter
+492,34,Pumpkin Beer,Pumpkin Ale,5.6,Fall
+493,34,Vanilla Pumpkin,Pumpkin Ale,5.6,Fall
+494,34,Jack O' Latte,Stout,6.6,Fall
+495,34,Pumpkin Bread,Pumpkin Ale,5.4,Fall
+496,34,Saison de Citrouille ,Saison,5.3,Fall
+497,34,Strawberry Best,Wheat Ale,4.4,Spring
+498,34,Grape Escape,Wheat Ale,4.1,Spring
+499,34,Daze of Summer,Ale,4.8,Summer
+500,34,Pineapple Wheach,Wheat Ale,5.1,Summer
+501,34,Summer Blast Blonde,Blonde Ale,5,Summer
+502,34,Speed Hump,Pale Ale,5,Summer
+503,34,Czech Yo' Self,Pilsner,5.1,Summer
+504,34,Tee It UP,Lager,4.8,Spring
+505,35,Hail Mary Belgian Style,IPA,7,Year-Round
+506,35,Belgian-Style Abbey Ale,Ale,6.5,Year-Round
+507,35,Belgian-Style White Ale,Ale,4.8,Year-Round
+508,35,Peaching to the Choir,Ale,9,Spring
+509,35,Heavenly Honey Razz,Amber Ale,5,Spring
+510,35,Forbidden Fruit,Ale,5,Year-Round
+511,35,Gabriel IPA,IPA,9,Spring
+512,35,Repent Rye IPA,Rye IPA,9,Year-Round
+513,35,Holy Moly! Imperial Stout,Stout,9,Year-Round
+514,35,Bourbon Age Holy Moly!,Stout,10,Year-Round
+515,35,Ave Maria,Ale,10,Year-Round
+516,35,Immaculate Collaboration V,Ale,9,Year-Round
+517,35,Divine Correlation,Saison,9,Year-Round
+518,35,Canes of Judas,Sour Ale,11,Year-Round
+519,36,1904 Lager,Lager,5,Year-Round
+520,13,BA Passport to Russia,Stout,12,Winter
+521,37,Irish Dry Stout,Stout,4.2,Winter
+522,37,English Dark Mild,Ale,4.2,Year-Round
+523,37,Kolsch,Kolsch,4.5,Year-Round
+524,37,Pilsner,Pilsner,5.4,Year-Round
+525,37,Dark As Funk,Saison,10,Year-Round
+526,37,Eastern MO IPA,IPA,5.5,Year-Round
+527,37,IPA,IPA,6.7,Summer
+528,37,Dry Stout,Stout,4.2,Year-Round
+529,37,Red Rye IPA,Rye IPA,5.9,Year-Round
+530,38,Wasabwitu?,Wheat Ale,5.5,Year-Round
+531,38,Bignose IPA,IPA,7,Year-Round
+532,38,Friendzy IPA,IPA,6.6,Year-Round
+533,38,Andrew's Ale,Ale,6,Year-Round
+534,38,Belgian Golden,Amber Ale,5,Year-Round
+535,38,Celtic Blood,Rye Ale,5,Year-Round
+536,38,Rasmanian Devil,Red Ale,5.5,Year-Round
+537,38,Wentzille Downtown Brown,Brown Ale,6.5,Year-Round
+538,38,Red 98,Red Ale,5.5,Year-Round
+539,38,Ryenot,Rye Ale,6,Year-Round
+540,38,Laplander DIPA,IPA,9,Year-Round
+541,38,Cathy's Cure,Ale,6,Year-Round
+542,39,American Lager,Lager,4.3,Year-Round
+543,39,American Wheat Ale,Wheat Ale,4.6,Year-Round
+544,40,Off Duty ,Lager,4.2,Year-Round
+545,40,Blonde Juele,Blonde Ale,4.5,Year-Round
+546,40,Pecan Brown Ale,Brown Ale,5.5,Year-Round
+547,40,Salted Caramel Pecan Ale,Brown Ale,5.5,Year-Round
+548,40,Cold-Fro-T-5,Ale,6,Year-Round
+549,40,Common Ride,Ale,5.2,Year-Round
+550,40,The Answer,Amber Ale,4.8,Year-Round
+551,40,2 Hop,IPA,6.7,Year-Round
+552,40,Zombie Lager 1031,Lager,5.5,Year-Round
+553,40,Dunkelweizen,Wheat Ale,5.3,Year-Round
+554,40,Oktoberfest,Pale Lager,5.5,Fall
+555,40,420/4,Pale Ale,5.5,Year-Round
+556,40,Vanilla Bean Coffee Juele,Blonde Ale,4.5,Year-Round
+557,40,Peach Juele,Blonde Ale,4.5,Year-Round
+558,40,Blueberry Juele,Blonde Ale,4.5,Year-Round
+559,40,Strawberry Juele,Blonde Ale,4.5,Year-Round
+560,7,Dark Mild w/ Coconut,Dark Ale,4.1,Spring
+561,7,Open Source Brown,Ale,5.3,Spring
+562,7,Peat Anise Porter,Porter,5,Spring
+563,41,Original,Lager,5.1,Year-Round
+564,41,Hefe Weizen,Hefeweizen,5.1,Year-Round
+565,41,Dunkel,Dark Lager,5.5,Year-Round
+566,41,Light,Pale Lager,4.8,Summer
+567,41,Marzen,Lager,5,Fall
+568,41,Maibock,Lager,7.2,Winter
+569,42,English Mild Ale,Ale,3.2,Year-Round
+570,42,Lammastie English Wheat Ale,Wheat Ale,4.1,Year-Round
+571,42,High Desert Pale Ale,Pale Ale,5.5,Year-Round
+572,42,Raspberry Ale,Ale,5.3,Year-Round
+573,42,Northern English Brown Ale,Brown Ale,4.2,Year-Round
+574,42,“Across the Pond” Hybrid IPA,IPA,6.6,Year-Round
+575,42,Tower Hill Burton-style ESB,Ale,5.1,Year-Round
+576,42,Cascadia Amber Ale,Amber Ale,5.4,Year-Round
+577,42,Moorgate London-Style Porter ,Porter,5.1,Year-Round
+578,43,Clyde's Ale,Ale,4,Year-Round
+579,43,Green Chile Ale,Ale,4,Year-Round
+580,43,Red Rye,Rye Ale,5,Year-Round
+581,43,Ale of 1000 Suns,Ale,4.5,Year-Round
+582,43,Belgian Wit,Wheat Ale,5,Year-Round
+583,43,Missouri Brunch Stout,Stout,7.5,Year-Round
+584,43,Samoa Stout,Stout,7.5,Year-Round
+585,43,Straw-Barry Ale,Ale,5.2,Year-Round
+586,43,Citra IPA,IPA,5.5,Year-Round
+587,43,DWIPA,IPA,9.5,Year-Round

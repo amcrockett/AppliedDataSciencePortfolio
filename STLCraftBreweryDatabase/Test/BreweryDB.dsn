@@ -1,0 +1,7 @@
+[ODBC]
+DRIVER=ODBC Driver 13 for SQL Server
+TrustServerCertificate=No
+WSID=AT-SCAPES-PC2
+APP=Microsoft Office 2016
+Trusted_Connection=Yes
+SERVER=localhost

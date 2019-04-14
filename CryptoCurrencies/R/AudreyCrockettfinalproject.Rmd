@@ -1,0 +1,862 @@
+---
+title: 'Final Project: Cryptocurrency Analysis'
+author: 'Audrey M. Crockett'
+output:
+  flexdashboard::flex_dashboard:
+    storyboard: true
+    orientation: columns
+    social: menu
+---
+
+<style>                     
+.navbar {
+  background-color:gray;
+  border-color:gray;
+}
+.navbar-brand {
+  color:white!important;
+}
+
+.sbframelist ul {
+display: table!important;
+}
+
+.storyboard-nav .sbframelist ul li {
+  font-size: 16px;
+  text-align: center;
+  transition: .4s all;
+  display: table-cell!important;
+}
+
+.sbframelist ul li.active{
+  font-size: 15px;
+  background-color: gray!important;
+  font-weight:bold;
+  letter-spacing: 1px;
+}
+body{
+  font-size: 12pt;
+}
+</style>  
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = T, eval = TRUE, warning=FALSE, message=FALSE)
+knitr::opts_chunk$set(tidy = TRUE)
+knitr::opts_chunk$set(tidy.opts=list(width.cutoff=36))
+knitr::opts_chunk$set(size = "small")
+knitr::opts_hooks$set(fig.width = function(options) {
+  if (options$fig.width < options$fig.height) {
+    options$fig.width = options$fig.height
+  }
+  options
+})
+knitr::knit_hooks$set(mysize = function(before, options, envir) {
+  if (before) 
+    return(options$size)
+})
+```
+
+### Overview 
+
+<font size= "4">
+<b> Purpose, Process, Product </b>
+
+We have built everything from net present value and internal rate of return calculators to extreme market event indicators, optimal portfolios, and risk-based capital: all set against the stylized facts of market risk and return. The final project puts it all together for a business context and data set of your choice. 
+
+
+
+<b> Problem: </b>
+
+Cryptocurrencies first came in to existence in 2009 when bitcoin launched their open source software. Cryptocurrency has multiple advantages. They are encrypted for safe internet transactions and use decentralized control usually using blockchain. With the financial crash of 2008, people were looking to invest in a commodity that was more decentralized away from bank control. For about four years, Bitcoin's value increased dramatically. Many early purchasers of bitcoin became wealthy from their investiment. Then bitcoin crashed in 2013. People who invested in the trend in 2012 and 2013 ended up losing thousands of dollars. Since then, many more cryptocurrencies have emerged and Bitcoin has recovered in the market place. There are people and businesses that believe cryptocurrency will be way of the future. 
+
+For this project, I am consulting for a small business interested in entering to the cryptocurrency market. The would like to know how risky is cryptocurrency and how likely would they be to get a return on their investiment. I will begin to build a comprehensive financial project by comparing three cryptocurrencies; bitcoin, ethereum, and ripple. 
+
+Tasks:
+1.  Examine the volatily of each cryptocurrencies
+2.	Retrieve and begin to analyze data about potential commodities to diversify into
+3.	Begin to generate economic scenarios based on events that may, or may not, materialize in the commodities
+4.	Mitigate their risks by diversifying in Cryptocurrency
+5.  Identify the optimal combination of Bitcoin, Ethereun, and Ripple to trade.
+
+</font>
+
+### Key business questions
+
+
+<font size = "4">
+<b>Key business questions: </b>
+
+
+1.	How would the company identify and mitigate risks of entering in this new market of cryptocurrency? 
+2.	How could the company hedge the investiment in cryptocurrency in order to maximize overall returns?
+3.	How would the company diversifying in cryptocurrency affect risk and returns?
+
+<b>More detailed questions:</b>
+
+1. What are the volatilies of the cryptocurrency?
+
+2. What are the size and direction of the returns of each cryptocurrency?
+
+
+3. Develop a model to optimize the holdings of each of the three commodities. 
+
+4. Run two scenarios: with and without short sales of the commodities. 
+
+5. Interpret results for the company, including tangency portfolio, amount of cash and equivalents in the portfolio allocation, minimum risk portfolio and the risk and return characteristics of each commodity.
+
+</font>
+
+
+
+### Skills Needed
+<b>Skills:</b>
+
+- Understanding how to use the following packages:
+
+
+- Flexdashboard - build dashboards with R
+
+
+- shiny - build interactive web pages with R
+
+
+- QRM - contains models and tools for quantitative risk management
+
+
+- qrmdata - contains functions and datasets for reproducing examples from the book "Quantitative Risk Management: Concepts, Techniques and Tools"
+
+
+- plotly - make interactive graphs, works in conjunction with shiny
+
+
+- psych - contains functions for multivariate analysis, factor analysis, principal component analysis, cluster analysis, and other methods
+
+
+- matrixStats - optimized functions that perform on rows and columns of matrices
+
+
+- moments - functions for calculating Pearson's kurtosis, Geary's kurtosis and skewness
+
+
+- zoo - methods for totally ordered indexed observations. Performs calculations containing irregular time series and makes it easy to pass time series objects between zoo and other time series packages. Does not provide modeling functionality.
+[definition source: https://www.r-bloggers.com/zoo-time-series-exercises]
+
+
+- xts - extensible time series. Enables uniform handling of many R time series classes by extending the zoo package.
+[definition source: https://www.datacamp.com/community/blog/r-xts-cheat-sheet and also contains a great cheat sheet for how to use this package]
+
+
+- ggplot2 - toolbox for visualization and plotting
+
+
+- quantreg - quantile regression allows us to study the impact of independent variables on different quantiles of dependent variable's distribution, providing a more complete picture of the relationship between Y and X. This package provides the toolset for performing this type of regression.
+[definition source: https://rstudio-pubs-static.s3.amazonaws.com/152505_49d1881e3fe64f0bad072282c36a6ca5.html]
+
+- mvtnorm allows Multivariate Normal and t Distributions calculations
+
+- reshape2 allows easy transformation between wide and long formats (similar to melt, it is in fact based around melt and cast)
+
+
+- quantprog - solves for quadratic programming problems
+- scales - aesthetics for graphing
+
+
+
+```{r, echo=FALSE}
+rm(list = ls())
+
+library(ggplot2)
+library(flexdashboard)
+library(shiny)
+library(QRM) #GPD fit
+library(qrmdata)
+library(xts)
+library(zoo)
+library(psych)
+library(quadprog)
+library(matrixStats)
+library(quantreg)
+library(moments)
+library(plotly)
+library(mvtnorm)
+library(reshape2)
+library(magick)
+library(cowplot)
+
+```
+
+### Exploratory Analysis
+
+```{r, echo = F}
+###CODE CREDIT TO WILLIAM FOOTE
+data <- read.csv("cryptodata.csv", header = TRUE)
+data <- data[,-1]
+# Compute log differences percent using as.matrix to force numeric type
+data.r <- diff(log(as.matrix(data[, -1]))) * 100
+# Create size and direction
+size <- na.omit(abs(data.r)) # size is indicator of volatility
+#head(size)
+colnames(size) <- paste(colnames(size),".size", sep = "") # Teetor
+direction <- ifelse(data.r > 0, 1, ifelse(data.r < 0, -1, 0)) # another indicator of skewness
+colnames(direction) <- paste(colnames(direction),".dir", sep = "")
+# Convert into a time series object: 
+# 1. Split into date and rates
+dates <- as.Date(data$date[-1], "%b %d, %Y")
+dates.chr <- as.character(data$date[-1])
+str(dates.chr)
+values <- cbind(data.r, size, direction)
+# for dplyr pivoting and ggplot2 need a data frame also known as "tidy data"
+data.df <- data.frame(dates = dates, returns = data.r, size = size, direction = direction)
+data.df.nd <- data.frame(dates = dates.chr, returns = data.r, size = size, direction = direction, stringsAsFactors = FALSE) 
+```
+
+```{r,echo = F}
+
+#non-coerced dates for subsetting on non-date columns
+# 2. Make an xts object with row names equal to the dates
+data.xts <- na.omit(as.xts(values, dates)) #order.by=as.Date(dates, "%d/%m/%Y")))
+#str(data.xts)
+data.zr <- as.zooreg(data.xts)
+returns <- data.xts
+
+##
+# Load the data_moments() function
+## data_moments function
+## INPUTS: r vector
+## OUTPUTS: list of scalars (mean, sd, median, skewness, kurtosis)
+data_moments <- function(data){
+  library(moments)
+  library(matrixStats)
+  mean.r <- colMeans(data)
+  median.r <- colMedians(data)
+  sd.r <- colSds(data)
+  IQR.r <- colIQRs(data)
+  skewness.r <- skewness(data)
+  kurtosis.r <- kurtosis(data)
+  result <- data.frame(mean = mean.r, median = median.r, std_dev = sd.r, IQR = IQR.r, skewness = skewness.r, kurtosis = kurtosis.r)
+  return(result)
+}
+# Run data_moments()
+answer <- data_moments(data.xts[, 1:3])
+# Build pretty table
+answer <- round(answer, 4)
+knitr::kable(answer)
+```
+
+***
+<b> Explanation of Process: </b>
+To get started, in previous R script, I wrangled the cryptocurrency dataset together from a larger dataset acquired from Kaggle. I loaded in the necessary packages (explained in an earlier section). I, then imported the newly wrangled "crypto_data.csv"" using `read.csv` function. Next, I transformed the data using `log` and taking the `diff` or difference of each log. The purpose of transforming the data is to create a normalized datas et. After which, I created a variable called `size` by taking the absolute values of our transformed data. At this point, I created another variable called `direction` using an `ifelse` statement. This will serve as another indicator for skewness. I create two date variables, one in the `as.Date` mode and the other in character mode. We did this because certain analysis will require our dates to be in different modes in order to run properly.  As I continue furturer into the data preprocessing, I made a time series object, which I called `data.xts`. Then, I used this object to create two new variables, `data.zr` and `returns`. Then, as in previous projects I created a table using the `moments` package. This table shows the descriptives of the newly processed data. Bitcoin has the least skewed distribution, the smallest amount of kurtosis, and the smallest IQR. This means that Bitcoin is the most evenly distrubuted and least variable of the three cryptocurrencies.Bitcoin is the oldest of the three cryptocurrencies.  Ethereum is the newest of the cryptocurrencies, and it is also the most variable. The interpretation could be given time the distributions of Ripple and Ethereum could become more even and less variable. 
+
+### History of Bitcoin, Ripple, Ethereum Markets Prices
+
+```{r, echo = FALSE}
+###Creating historical price plots
+data$date <- as.Date(data$date, "%b %d, %Y")
+
+bit_hx <- ggplot(data) + geom_line(aes(date, bitcoin), color = "gold") +
+  scale_x_date(date_labels = "%Y") +
+  labs(title = "Historical Bitcoin Prices",
+       x = "Year",
+       y= "Closing Price")
+
+rip_hx <- ggplot(data = data) + geom_line(aes(date, ripple), color = "lightblue")+
+  labs(title = "Historical Ripple Prices",
+       x = "Year",
+       y= "Closing Price")
+
+eth_hx <- ggplot(data = data) + geom_line(aes(date, ethereum), color = "gray20")+
+  labs(title = "Historical Ethereum Prices",
+       x = "Year",
+       y= "Closing Price")
+
+#Treat the plots as one plot
+plot_grid(bit_hx, eth_hx, rip_hx, rows = 3)
+```
+
+***
+<b> Explanation of Process: </b>
+To create the historical proice plots, I used the `ggplot` function to create three simple line graphs. Using a package called `cowplot`, I was able to plot the three line graphs together. The historical data shows the historical prices of each cryptocurrency from 2015 - 2018. The plots show an overall upwards trend in closing price with a price drop in early 2018. In mid 2017, the closing price seems to steadily grow on all the cryptocurrencies. 
+
+
+### Percentage of Change
+
+```{r, echo = FALSE}
+
+title.chg <- "Cryptocurrency Percentage of Change Over Time"
+p1 <- autoplot.zoo(data.xts[,1:3]) + ggtitle(title.chg) + ylim(-5, 5)
+p2 <- autoplot.zoo(data.xts[,4:6]) + ggtitle(title.chg) + ylim(-5, 5)
+p2
+``` 
+
+***
+<b> Explanation of Process: </b>
+Using package `zoo`, I have examined the percentage of change in the cryptocurrencies over time. These currencies show great fluctuatation over time. Even though Bitcoin is the longest existing cryptocurrency, the large changes in market price over time is very similar to that of Ethereum and Ripple. This lends to the notion that these currencies have yet to be stabilized in this market.
+
+
+
+
+### Rolling Volatility 
+
+```{r, echo = FALSE}
+
+vol_rolling <- function(x){
+  library(matrixStats)
+  vol_r <- colSds(x)
+  return(vol_r)
+}
+ALL.r <- data.xts[, 1:3]
+window <- 90 #reactive({input$window})
+vol_r <- rollapply(ALL.r, width = window, vol_rolling, align = "right", by.column = FALSE)
+colnames(vol_r) <- c("bitcoin.vol", "ripple.vol", "ethereum.vol")
+year <- format(index(vol_r), "%Y")
+r_vol <- merge(ALL.r, vol_r, year)
+
+img <- image_graph(res = 96)
+datalist <- split(r_vol, r_vol$year)
+out <- lapply(datalist, function(data){
+  p <- ggplot(data, aes(bitcoin.vol, ethereum.vol)) +
+    geom_point() + 
+    ggtitle(data$year) + 
+    geom_quantile(quantiles = c(0.05, 0.95)) + 
+    geom_quantile(quantiles = 0.5, linetype = "longdash") +
+    geom_density_2d(colour = "red")  
+  print(p)
+})
+
+while (!is.null(dev.list()))  dev.off()
+#img <- image_background(image_trim(img), 'white')
+animation <- image_animate(img, fps = .25)
+animation
+
+```
+
+*** 
+<b>Explanation of Process:</b>
+
+In this visualization, I am comparing Bitcoin and Ethereum, two popular cryptocurrencies in order to understand the way market interactions affect returns. To build this model, I used the rolling volatilies of both Bitcoin and Ethereum. I used `geom_quantiles`to show the data at 95%, 50%, and 5%. With `geom_density`, I modeled the kernel density of the volatilities in the form of contours. The closer in proximity to one another the contours are, the more densely clustered the volatilities of Bitcoin and Ethereum are to one another.  Using a package called `magick`, I was able to animate the plot to show the yearly volatilities of the two cryptocurrencies.
+
+### Market Risk
+
+```{r, echo = FALSE}
+# Market risk 
+corr_rolling <- function(x) {	
+  dim <- ncol(x)	
+  corr_r <- cor(x)[lower.tri(diag(dim), diag = FALSE)]	
+  return(corr_r)
+}
+
+corr_r <- rollapply(ALL.r, width = window, corr_rolling, align = "right", by.column = FALSE)
+colnames(corr_r) <- c("bitcoin.ripple", "bitcoin.ethereum", "ripple.ethereum")
+
+r_corr_vol <- merge(ALL.r, corr_r, vol_r, year)
+
+taus <- seq(.05,.95,.05)	# Roger Koenker UI Bob Hogg and Allen Craig
+fit.rq.bitcoin.ethereum <- rq(log(bitcoin.ethereum) ~ log(ethereum.vol), tau = taus, data = r_corr_vol)	
+fit.lm.bitcoin.ethereum <- lm(log(bitcoin.ethereum) ~ log(ethereum.vol), data = r_corr_vol)	
+# Some test statements	
+bit.eth.summary <- summary(fit.rq.bitcoin.ethereum, se = "boot")
+plot(bit.eth.summary)
+
+```
+
+***
+<b> Explanation of Process </b>
+Creating a user defined function called `corr_rolling`, I was able to calculate the rolling correlations of each of the three cryptocurrencies. I then merged the rolling correlations with the tolling volatilities. Then using the `seq` function to create of a sequence of .05, .95, .05. or multiple taus for quantile regression. The quantile regression will compare the rolling correlation of Bitcoin and ethereum to the volatility of ethereum. 
+
+
+### Value At Risk: Bitcoin
+
+```{r, echo=FALSE}
+
+##
+returns1 <- returns[,1]
+colnames(returns1) <- "Returns" #kluge to coerce column name for df
+returns1.df <- data.frame(Returns = returns1[,1], Distribution = rep("Historical", each = length(returns1)))
+  
+alpha <- 0.95 # reactive({ifelse(input$alpha.q>1,0.99,ifelse(input$alpha.q<0,0.001,input$alpha.q))})
+  
+# Value at Risk
+VaR.hist <- quantile(returns1,alpha)
+VaR.text <- paste("Value at Risk =", round(VaR.hist, 2))
+  
+# Determine the max y value of the desity plot.
+# This will be used to place the text above the plot
+VaR.y <- max(density(returns1.df$Returns)$y)
+  
+# Expected Shortfall
+ES.hist <- median(returns1[returns1 > VaR.hist])
+ES.text <- paste("Expected Shortfall =", round(ES.hist, 2))
+  
+p <- ggplot(returns1.df, aes(x = Returns, fill = Distribution)) + geom_density(alpha = 0.5) + 
+    geom_vline(aes(xintercept = VaR.hist), linetype = "dashed", size = 1, color = "firebrick1") + 
+    geom_vline(aes(xintercept = ES.hist), size = 1, color = "firebrick1") +
+    annotate("text", x = 2+ VaR.hist, y = VaR.y*1.05, label = VaR.text) +
+    annotate("text", x = 1.5+ ES.hist, y = VaR.y*1.1, label = ES.text) + scale_fill_manual( values = "dodgerblue4")
+
+ggplotly(p)
+
+```
+
+***
+<b>Explanation of Process:</b>
+For the next three tabs, we be examining the values at Risk for each crytocurrency. First by taking the returns of Bitcoin, I will use this to create a data frame of the returns and the distribution label of historical. Next, I used the function `quantile` to add quantiles to the plot.Using `paste`, I plotted the expected shortfall. Then using `ggplot`, `geom_density`, `geom_vline`, and `annotate`, I created a visualization for Bitcoin's value at risk. With `ggplotly`, the plot is inactive. Bicoins expected shortfall is 8.8, and the value at risk is 6.62. The distribution's highest point is around zero. The right tail of the distribution has a much lower density. 
+
+
+### Value At Risk: Ripple
+
+```{r, echo=FALSE}
+
+##
+returns2 <- returns[,2]
+colnames(returns2) <- "Returns" #kluge to coerce column name for df
+returns2.df <- data.frame(Returns = returns2[,1], Distribution = rep("Historical", each = length(returns2)))
+  
+alpha <- 0.95 # reactive({ifelse(input$alpha.q>1,0.99,ifelse(input$alpha.q<0,0.001,input$alpha.q))})
+  
+# Value at Risk
+VaR.hist <- quantile(returns2,alpha)
+VaR.text <- paste("Value at Risk =", round(VaR.hist, 2))
+  
+# Determine the max y value of the desity plot.
+# This will be used to place the text above the plot
+VaR.y <- max(density(returns2.df$Returns)$y)
+  
+# Expected Shortfall
+ES.hist <- median(returns2[returns2 > VaR.hist])
+ES.text <- paste("Expected Shortfall =", round(ES.hist, 2))
+  
+p <- ggplot(returns2.df, aes(x = Returns, fill = Distribution)) + geom_density(alpha = 0.5) + 
+    geom_vline(aes(xintercept = VaR.hist), linetype = "dashed", size = 1, color = "firebrick1") + 
+    geom_vline(aes(xintercept = ES.hist), size = 1, color = "firebrick1") +
+    annotate("text", x = 2+ VaR.hist, y = VaR.y*1.05, label = VaR.text) +
+    annotate("text", x = 1.5+ ES.hist, y = VaR.y*1.1, label = ES.text) + scale_fill_manual( values = "dodgerblue4")
+
+ggplotly(p)
+
+```
+
+***
+<b>Explanation of Process:</b>
+Using a similar to the process that created the bitcoin value at risk plot, we can now plot our Ripple value that is at risk. Ripple has a higher value at risk and expected short fall than Bitcoin. Ripple's distribution as discussed before has much higher kurtosis, giving the distribution a tall and skinny appearence. 
+
+### Value At Risk: Ethereum
+
+```{r, echo=FALSE}
+
+##
+returns3 <- returns[,3]
+colnames(returns3) <- "Returns" #kluge to coerce column name for df
+returns3.df <- data.frame(Returns = returns3[,1], Distribution = rep("Historical", each = length(returns3)))
+alpha <- 0.95 # reactive({ifelse(input$alpha.q>1,0.99,ifelse(input$alpha.q<0,0.001,input$alpha.q))})
+  
+# Value at Risk
+VaR.hist <- quantile(returns3,alpha)
+VaR.text <- paste("Value at Risk =", round(VaR.hist, 2))
+  
+# Determine the max y value of the desity plot.
+# This will be used to place the text above the plot
+VaR.y <- max(density(returns3.df$Returns)$y)
+  
+# Expected Shortfall
+ES.hist <- median(returns3[returns3 > VaR.hist])
+ES.text <- paste("Expected Shortfall =", round(ES.hist, 2))
+  
+p <- ggplot(returns3.df, aes(x = Returns, fill = Distribution)) + geom_density(alpha = 0.5) + 
+    geom_vline(aes(xintercept = VaR.hist), linetype = "dashed", size = 1, color = "firebrick1") + 
+    geom_vline(aes(xintercept = ES.hist), size = 1, color = "firebrick1") +
+    annotate("text", x = 2+ VaR.hist, y = VaR.y*1.05, label = VaR.text) +
+    annotate("text", x = 1.5+ ES.hist, y = VaR.y*1.1, label = ES.text) + scale_fill_manual( values = "dodgerblue4")
+
+ggplotly(p)
+
+```
+
+***
+<b>Explanation of Process:</b>
+The last of value at risk plots shows the distribution of the ethereum. Ethereum has the highest expected shortfall and the highest value at risk. The distribution of Ethereum returns left skewed with some extreme right tail outliers.  
+
+
+### Loss Analysis Bitcoin
+
+```{r, echo = FALSE}
+
+# Get last prices
+price.last <- as.numeric(tail(data[, -1], n=1))
+# Specify the positions
+position.rf <- c(1/3, 1/3, 1/3)
+# And compute the position weights
+w <- position.rf * price.last
+# Fan these  the length and breadth of the risk factor series
+weights.rf <- matrix(w, nrow=nrow(data.r), ncol=ncol(data.r), byrow=TRUE)
+#head(rowSums((exp(data.r/100)-1)*weights.rf), n=3)
+## We need to compute exp(x) - 1 for very small x: expm1 accomplishes this
+#head(rowSums((exp(data.r/100)-1)*weights.rf), n=4)
+loss.rf <- -rowSums(expm1(data.r/100) * weights.rf)
+loss.rf.df <- data.frame(Loss = loss.rf, Distribution = rep("Historical", each = length(loss.rf)))
+## Simple Value at Risk and Expected Shortfall
+alpha.tolerance <- .95
+VaR.hist <- quantile(loss.rf, probs=alpha.tolerance, names=FALSE)
+## Just as simple Expected shortfall
+ES.hist <- median(loss.rf[loss.rf > VaR.hist])
+VaR.text <- paste("Value at Risk =\n", round(VaR.hist, 2)) # ="VaR"&c12
+ES.text <- paste("Expected Shortfall \n=", round(ES.hist, 2))
+title.text <- paste(round(alpha.tolerance*100, 0), "% Loss Limits")
+# using histogram bars instead of the smooth density
+p <- ggplot(loss.rf.df, aes(x = Loss, fill = Distribution)) + 
+  geom_histogram(alpha = 0.8, color = "gray45") + 
+  geom_vline(aes(xintercept = VaR.hist), linetype = "dashed", size = 1, color = "blue", alpha = .2) + 
+  geom_vline(aes(xintercept = ES.hist), size = 1, color = "blue", alpha = .2) + 
+  annotate("text", x = VaR.hist, y = 40, label = VaR.text) + 
+  annotate("text", x = ES.hist, y = 20, label = ES.text) + xlim(0, 15) + 
+  scale_fill_manual(values = "lightblue") +
+  ggtitle(title.text)
+ggplotly(p)
+
+```
+
+***
+<b>Explanation of Process:</b>
+Bitcoin has the lowest value at risk of the three cryptocurrencies. To get a more in depth look at potential loss, I will perform a loss analysis on the Bitcoin data. To begin the loss analysis, I took the most recent prices of Bitcoin, using the function `tail`. Then, weighted the position of Bitcoin using Bitcoin's last prices. `rowsums`, `expm1`, data.r divided by 100,and  multiplied by the calculated weights are used to calculate the loss. `median` calculates the median of the distribution of the histogram. As in previous section, I use `paste` to label the value at risk and expected shortfall on the histogram. Then, I plotted the histogram using `ggplot` and `plotly`.
+
+### Extreme Event Management
+
+```{r, echo = FALSE}
+data <- as.vector(loss.rf) # data is purely numeric
+umin <-  min(data)         # threshold u min
+umax <-  max(data) - 0.1   # threshold u max
+nint <- 100                # grid length to generate mean excess plot
+grid.0 <- numeric(nint)    # grid store
+e <- grid.0                # store mean exceedances e
+upper <- grid.0            # store upper confidence interval
+lower <- grid.0            # store lower confidence interval
+u <- seq(umin, umax, length = nint) # threshold u grid
+alpha <- 0.95                  # confidence level
+for (i in 1:nint) {
+    data <- data[data > u[i]]  # subset data above thresholds
+    e[i] <- mean(data - u[i])  # calculate mean excess of threshold
+    sdev <- sqrt(var(data))    # standard deviation
+    n <- length(data)          # sample size of subsetted data above thresholds
+    upper[i] <- e[i] + (qnorm((1 + alpha)/2) * sdev)/sqrt(n) # upper confidence interval
+    lower[i] <- e[i] - (qnorm((1 + alpha)/2) * sdev)/sqrt(n) # lower confidence interval
+  }
+mep.df <- data.frame(threshold = u, threshold.exceedances = e, lower = lower, upper = upper)
+loss.excess <- loss.rf[loss.rf > u]
+# Voila the plot => you may need to tweak these limits!
+p <- ggplot(mep.df, aes( x= threshold, y = threshold.exceedances)) + geom_line() + geom_line(aes(x = threshold, y = lower), colour = "red") + geom_line(aes(x = threshold,  y = upper), colour = "red") + annotate("text", x = -20, y = 20, label = "upper 95%") + annotate("text", x = 15, y = 0, label = "lower 5%")
+p
+```
+
+***
+Using the calculated loss from the loss analysis section, I can begin to assess for extreme risks. `min` and `max` were used to calculate the minium and maxium threholds for the extreme risk plot. Mean exceedances are then calculated. Through the implementation of a for loop to calculate mean excess of threshold and confidence intervals. Then, plot the results with `ggplot`.
+
+### GPD to Describe and Analyze the Extremes
+
+```{r, echo=FALSE}
+alpha.tolerance <- 0.95
+u <- quantile(loss.rf, alpha.tolerance , names=FALSE)
+fit <- fit.GPD(loss.rf, threshold=u) # Fit GPD to the excesses
+xi.hat <- fit$par.ests[["xi"]] # fitted xi
+beta.hat <- fit$par.ests[["beta"]] # fitted beta
+data <- loss.rf
+n.relative.excess <- length(loss.excess) / length(loss.rf) # = N_u/n
+VaR.gpd <- u + (beta.hat/xi.hat)*(((1-alpha.tolerance) / n.relative.excess)^(-xi.hat)-1) 
+ES.gpd <- (VaR.gpd + beta.hat-xi.hat*u) / (1-xi.hat)
+n.relative.excess <- length(loss.excess) / length(loss.rf) # = N_u/n
+VaR.gpd <- u + (beta.hat/xi.hat)*(((1-alpha.tolerance) / n.relative.excess)^(-xi.hat)-1) 
+ES.gpd <- (VaR.gpd + beta.hat-xi.hat*u) / (1-xi.hat)
+# Plot away
+VaRgpd.text <- paste("GPD: Value at Risk =", round(VaR.gpd, 2))
+ESgpd.text <- paste("Expected Shortfall =", round(ES.gpd, 2))
+title.text <- paste(VaRgpd.text, ESgpd.text, sep = " ")
+loss.plot <- ggplot(loss.rf.df, aes(x = Loss, fill = Distribution)) + geom_density(alpha = 0.2)
+loss.plot <- loss.plot + geom_vline(aes(xintercept = VaR.gpd), colour = "blue", linetype = "dashed", size = 0.8)
+loss.plot <- loss.plot + geom_vline(aes(xintercept = ES.gpd), colour = "blue", size = 0.8) + 
+  annotate("text", x = 11, y = 0.3, label = VaRgpd.text, colour = "gray25") + 
+  annotate("text", x = 16, y = 0.2, label = ESgpd.text, colour = "gray25")
+loss.plot <- loss.plot + 
+  xlim(0, 20) + 
+  scale_fill_manual(values = "lightblue")+
+  ggtitle(title.text)
+
+ggplotly(loss.plot)
+```
+
+***
+<b>Explanation of Process:</b>
+GPD or the generalized pareto distribution is needed to estimate historical loss parameters. To calculate the GPD, I set the alpha tolerance to 95%. Next, with the `quantiles` function to calculate excess with an alpha tolerence of 95%. `fit.GPD`, then, fit the GPD to the losses. `ggplot`and `ggplotly` were utilized to visualized the GPD plot. The GPD value at risk is 12.99 with an eexpected shortfall of 15.64.
+
+### Confidence in GPD
+
+```{r, echo = FALSE}
+showRM(fit, alpha = 0.99, RM = "ES", method = "BFGS") 
+#showRM(fit, alpha = 0.99, RM = "VaR", method = "BFGS")
+```
+
+***
+<b>Explanation of Process:</b>
+To find the confidence intervals for the GPD, `showRM` was used. This produces a complex visualization. Along the x axis the Exceedences are displayed along one y axis the optimization and the other the confidence interval. 
+
+### Portfolio Analytics: the Markowitz Model
+
+
+```{r}
+R <- returns[,1:3]/100
+quantile_R <- quantile(R[,1], 0.95) # look at tail of the bitcoin distribution
+R <- subset(R, bitcoin > quantile_R, select = bitcoin:ethereum)
+names.R <- colnames(R)
+mean.R <-  apply(R,2,mean)
+cov.R <-  cov(R)
+sd.R <-  sqrt(diag(cov.R)) ## remember these are in daily percentages
+#library(quadprog)
+Amat <-  cbind(rep(1,3),mean.R)  ## set the equality constraints matrix
+mu.P <- seq(0.5*min(mean.R), 1.5*max(mean.R), length = 300)  ## set of 300 possible target portfolio returns
+#mu.P <- seq(0.5*quantile_R, max(R), length = 100)  ## set of 300 possible target portfolio returns
+sigma.P <-  mu.P ## set up storage for std dev's of portfolio returns
+weights <-  matrix(0, nrow=300, ncol = ncol(R)) ## storage for portfolio weights
+colnames(weights) <- names.R
+for (i in 1:length(mu.P))
+{
+  bvec <- c(1,mu.P[i])  ## constraint vector
+  result <- solve.QP(Dmat=2*cov.R,dvec=rep(0,3),Amat=Amat,bvec=bvec,meq=2)
+  sigma.P[i] <- sqrt(result$value)
+  weights[i,] <- result$solution
+}
+sigma.mu.df <- data.frame(sigma.P = sigma.P, mu.P = mu.P )
+mu.free <-  .0000822 ## input value of daily risk-free interest rate
+                     ## exp(0.03 / 365) - 1 TYX 30 year CBOE yield
+sharpe <- ( mu.P-mu.free) / sigma.P ## compute Sharpe's ratios
+ind <-  (sharpe == max(sharpe)) ## Find maximum Sharpe's ratio
+ind2 <-  (sigma.P == min(sigma.P)) ## find the minimum variance portfolio
+ind3 <-  (mu.P > mu.P[ind2]) ## finally the efficient frontier
+col.P <- ifelse(mu.P > mu.P[ind2], "blue", "grey")
+sigma.mu.df$col.P <- col.P
+
+```
+
+***
+<b> Explanation of Process: </b>
+In this section, we used R code to set up the Markowitz Model. This model is applied to analyze the risk of diversification in the three cryptocurrencies, while allowing the identification and selection of lower risk assets than one single asset alone. In order to set up this model, I used the return variable that I created in data preprocessing. The returns were changed to percentages. Next, I created the `Quantile_R` variable using the `quantile` function at 95th quantile. This enabled the visualization of the tail end of the Bitcoin distribution. Next, I used the new `Quantile_R` vairable to subset the data by examining Bitcoin quantitiles greater than the end of the distribution. This created a new variable called `R`. Variable `R` is employed to: 1) create new column names, 2) take the mean of two data points consectutively using the `apply` function, 3) take the covarience of R, 4) with the covariance of, calculate the standard deviation of `R`. 
+Next, `Amat` was calculated using the repeating patterns of `mean.r`. `Amat` was used to set the equality constraint of the matrix. Next,the Mu, or performance value was calculated for the model. This was done through the functions `min`, `max`, and `sequence` to set 300 possible target portfolio returns. Then,  two variables were set up to be calculated in the future, `sigma.P` and `weights`. Now that the placeholder variables were set, a `for loop` was created to loop through each row of `mu.P` to calculate both `sigma.P` (risk value) and `weights`. Following the `for loop`, I created a new data frame from the newly calculated sigma value and the mu value called `sigma.mu.df`. I created a new value called `mu.free`, which I set to .0000822. `mu.free` becomes the input value of daily risk-free interest rate. Using `mu.P`, `mu.free` and `sigma.P`, I was able to calculate Sharpe's ratio, which is the average return that was earned in excess. I used the `max` function to calculate the maxium value of the Sharpe's ratio. We used `min` of sigma to find the minimum variance in the portfolio. Then, I calculated the efficent frontier, which is lowest risk of an expected return. Lastly, I created a value called `col.P`, which will add colors based on the mu and minium variance value in the visualization on the next tab. 
+
+### Visualization: The Markowitz model
+
+```{r, echo=F}
+
+p <- ggplot(sigma.mu.df, aes(x = sigma.P, y = mu.P, group = 1)) + geom_line(aes(colour=col.P, group = col.P)) + scale_colour_identity() # + xlim(0, max(sd.R*1.1))  + ylim(0, max(mean.R)*1.1) + 
+p <- p + geom_point(aes(x = 0, y = mu.free), colour = "red")
+options(digits=4)
+p <- p + geom_abline(intercept = mu.free, slope = (mu.P[ind]-mu.free)/sigma.P[ind], colour = "red")
+p <- p + geom_point(aes(x = sigma.P[ind], y = mu.P[ind])) 
+p <- p + geom_point(aes(x = sigma.P[ind2], y = mu.P[ind2])) ## show min var portfolio
+p <- p + annotate("text", x = sd.R[1], y = mean.R[1], label = names.R[1]) + annotate("text", x = sd.R[2], y = mean.R[2], label = names.R[2]) + annotate("text", x = sd.R[3], y = mean.R[3], label = names.R[3])
+# p
+ggplotly(p)
+
+```
+
+***
+<b> Explanation of Process: </b>
+Now that I had coded the model, I was able to visualize the results using `ggplot2` and `plotly`. I used the `annonate` function within ggplot to create a more informative visual with the cryptocurrencies listed on the chart. Using `plotly`, I created roll over text boxes on the efficent frontier chart, as well.The goal of this visualization to find the optimal profolio. As seen in the plot, the sigma or risk values are on the x and the mu or performace values are on the y axis. The redline shows the `mu.free` or the input value of daily risk-free interest rate. When portfolio performance is greater than the variation of the portfolio, this is indicated as blue on the graph. When performance is less than our portfolio variation, the line is shown as gray. AS seen in the model, the efficient frontier is between the two points on the graph, which is a very small spread. Bitcoin is the least risky and highest performing of the other two cryptocurrencies. The Markowitz model indicates that Bitcoin portfolio with primarily Bitcoin would be the most favorable investment outcome. Ethereum appeared in the model as high risk and not favorable in returns. 
+
+###Portfolio Variation with no short sales
+```{r, echo = F}
+# no short sales
+#
+# library(quadprog)
+R <- returns[,1:3]/100
+quantile_R <- quantile(R[,1], 0.95)
+R <- subset(R, bitcoin > quantile_R, select = bitcoin:ethereum)
+mean.R <- apply(R,2,mean)
+cov.R <-  cov(R)
+sd.R <-  sqrt(diag(cov.R))
+Amat <-  cbind(rep(1,3),mean.R,diag(1,nrow=3))  # set the constraints matrix
+length.P <- 300
+#mu.P <- seq(0.5*min(mean.R), 1.5*max(mean.R), length = length.P)  ## set of 300 possible target portfolio returns
+mu.P <-  seq(min(mean.R)+.0001,max(mean.R)-.0001,length = length.P) 
+#mu.P <- seq(0.5*quantile_R, max(R), length = length.P)  ## set of 300 possible target portfolio returnssigma.P <-  mu.P # set up storage for standard deviations of portfolio returns
+weights <-  matrix(0, nrow = length.P, ncol = 3) # storage for portfolio weights
+for (i in 1:length(mu.P))  # find the optimal portfolios for each target expected return
+{
+  bvec <-  c(1,mu.P[i],rep(0,3))
+  result <-  
+    solve.QP(Dmat=2*cov.R,dvec=rep(0,3),Amat=Amat,bvec=bvec,meq=2)
+  sigma.P[i] <-  sqrt(result$value)
+  weights[i,] <-  result$solution
+}
+sigma.mu.df <- data.frame(sigma.P = sigma.P, mu.P = mu.P )
+mu.free <-  .0003 ## input value of daily risk-free interest rate
+sharpe <- ( mu.P-mu.free)/sigma.P ## compute Sharpe's ratios
+ind <-  (sharpe == max(sharpe)) ## Find maximum Sharpe's ratio
+ind2 <-  (sigma.P == min(sigma.P)) ## find the minimum variance portfolio
+ind3 <-  (mu.P > mu.P[ind2]) ## finally the efficient frontier
+col.P <- ifelse(mu.P > mu.P[ind2], "blue", "grey")
+sigma.mu.df$col.P <- col.P
+#renderPlotly({
+p <- ggplot(sigma.mu.df, aes(x = sigma.P, y = mu.P, group = 1)) + geom_line(aes(colour=col.P, group = col.P)) + scale_colour_identity() # + xlim(0, max(sd.R*1.1))  + ylim(0, max(mean.R)*1.1) + 
+p <- p + geom_point(aes(x = 0, y = mu.free), colour = "red")
+options(digits=4)
+p <- p + geom_abline(intercept = mu.free, slope = (mu.P[ind]-mu.free)/sigma.P[ind], colour = "red")
+p <- p + geom_point(aes(x = sigma.P[ind], y = mu.P[ind])) 
+p <- p + geom_point(aes(x = sigma.P[ind2], y = mu.P[ind2])) ## show min var portfolio
+p <- p + annotate("text", x = sigma.P[ind], y = mu.P[ind], label = "T") + annotate("text", x = sigma.P[ind2], y = mu.P[ind2], label = "M") + annotate("text", x = sd.R[1], y = mean.R[1], label = names.R[1]) + annotate("text", x = sd.R[2], y = mean.R[2], label = names.R[2]) + annotate("text", x = sd.R[3], y = mean.R[3], label = names.R[3])
+p <- p + geom_vline(aes(xintercept = sd.R[2]), color = "red")
+
+ggplotly(p)
+```
+
+***
+<b> Explanation of Process: </b>
+To model the portfolio variation, the process was similar to that of the Markowitz model. I set the `mu`, `sigma`, `weights`, and `mu.free`. This model does not include short sales of the metal commodities. Next, we used `ggplot` to plot the results, as well, as the `annotate` function to more clearly label the metal commodities. In this chart, there are large variations among the diffent cryptocurrencies  with no short sale present. The effecient frontier is very small and is in favor of Bitcoin.  
+
+```{r, echo = F}
+# Bootstrapping a confidence interval for the Sharpe's Ratio
+# 
+# R is subset of larger R sample using u, the quantile threshold
+n <-  dim(R)[1]
+N <-  dim(R)[2]
+mean_vect_ACTUAL <-  apply(R,2,mean)
+cov_mat_ACTUAL <-  cov(R)
+n_boot <-  1000
+out <-  matrix(1,nrow=n_boot,ncol=2)
+mean_out <-  matrix(1,nrow = n_boot,ncol = dim(R)[2])
+set.seed(1016)
+i_boot <- i 
+for (i_boot in (1:n_boot))
+{
+  # generate n-1 random indices
+  uniform <-  ceiling((n-1)*runif(n-1))
+  R_boot <-  R[uniform,] # select random sample
+  mean_vect <-  apply(R_boot,2,mean)
+  mean_out[i_boot,] <-  mean_vect
+  cov_mat <-  cov(R_boot)
+  sd_vect <-  sqrt(diag(cov_mat))
+  Amat <-  cbind(rep(1,N),mean_vect) # short sales allowed
+  #   Amat = cbind(rep(1,N),mean_vect,diag(1,N)) # no short sales
+  sd.P <- mu.P 
+  mu.P <-  seq(min(mean_vect)+.0001,max(mean_vect)-.0001,length = 300) #length.P)         
+  weights <-  matrix(0,nrow=300,ncol=N) 
+  for (i in 1:length(mu.P))  
+  {
+    bvec <-  c(1,mu.P[i])  # short sales
+    #bvec = c(1,muP[i],rep(0,N)) # no short sales
+    result <-  
+      solve.QP(Dmat=2*cov_mat,dvec=rep(0,N),Amat=Amat,bvec=bvec,meq=2)
+    sd.P[i] <-  sqrt(result$value)
+    weights[i,] <-  result$solution
+  } 
+  sharpe <- ( mu.P-mu.free)/sd.P 
+  ind <-  (sharpe == max(sharpe)) 
+  out[i_boot,1] <-  sharpe[ind]
+  w.T <-  weights[ind,]
+  sharpe_ACTUAL <-  (w.T %*% mean_vect_ACTUAL - mu.free) / sqrt(w.T %*% cov_mat_ACTUAL %*% w.T)
+  out[i_boot,2] <-  sharpe_ACTUAL
+}
+```
+
+
+###Portfolio Variation with short sales
+
+```{r, echo = FALSE}
+p <- ggplot(sigma.mu.df, aes(x = sigma.P, y = mu.P, group = 1)) + geom_line(aes(colour=col.P, group = col.P)) + scale_colour_identity() # + xlim(0, max(sd.R*1.1))  + ylim(0, max(mean.R)*1.1) + 
+p <- p + geom_point(aes(x = 0, y = mu.free), colour = "red")
+options(digits=4)
+p <- p + geom_abline(intercept = mu.free, slope = (mu.P[ind]-mu.free)/sigma.P[ind], colour = "red")
+p <- p + geom_point(aes(x = sigma.P[ind], y = mu.P[ind])) 
+p <- p + geom_point(aes(x = sigma.P[ind2], y = mu.P[ind2])) ## show min var portfolio
+p <- p + annotate("text", x = sigma.P[ind], y = mu.P[ind], label = "T") + annotate("text", x = sigma.P[ind2], y = mu.P[ind2], label = "M") + annotate("text", x = sd.R[1], y = mean.R[1], label = names.R[1]) + annotate("text", x = sd.R[2], y = mean.R[2], label = names.R[2]) + annotate("text", x = sd.R[3], y = mean.R[3], label = names.R[3])
+p <- p + geom_vline(aes(xintercept = sd.R[2]), color = "red")
+
+ggplotly(p)
+```
+
+***
+<b> Explanation of Process: </b>
+
+This chart, again, examined the portfolio variation, this time with short sales included. `ggplot` and `ggplotly` were used to visualize the results. The efficient Frontier becomes larger and shows the benefit of diversifying with Bitcoin and Ripple. Ethereum is not favorable to include in the portfolio. 
+
+
+### Confidence interval for the Sharpe's Ratio
+
+```{r, echo=FALSE}
+out_SHORT <-  data.frame(actual = out[,2], predicted = out[,1], residuals = out[,2] - out[,1])
+out_SUMMARY <- data_moments(as.matrix(out_SHORT))
+knitr::kable(out_SUMMARY)
+```
+
+***
+<b> Explanation of Process: </b>
+In this section, bootstrapping methods were applied in order to get a confidence interval for the Sharpe's ratio. In this table, the differences between the actual and predicted are displayed across different descriptives. To display this table, I used two new dataframes, one called `out_SHORT` and the other called `out_SUMMARY`. `out_short` is used to create the vairables of actual, predicted, and residuals. Then, `data_moments` is used to make the summary table. In the table, the predicted kurtosis and skewness of the cyptocurrency distrubtuion are not very accurate. In the following graph, we will model these results between predicted and observed. 
+
+### Confidence interval for the Sharpe's Ratio Cont'd
+```{r, echo = F}
+results <- out_SHORT
+# Conventional approach is not very useful or even intuitive
+min_xy <- min(min(results$actual), min(results$predicted))
+max_xy <- max(max(results$actual), max(results$predicted))
+plot_melt <- melt(results, id.vars = "predicted") #melt from reshape2 package
+plot_data <- rbind(plot_melt, data.frame(predicted = c(min_xy, max_xy), variable = c("actual", "actual"), value = c(max_xy, min_xy)))
+p <- ggplot(plot_data, aes(x = predicted, y = value)) + geom_point(size = 2.5) + theme_bw()
+p <- p + facet_wrap(~variable, scales = "free")
+p
+```
+
+***
+<b> Explanation of Process: </b>
+In this section, we model our confidence interval for the Sharpe's ratio. To do this, I took the minium and maxium of the actual and predicted values; these values served as the x and y limits for the plot. Then, `melt` was used to reshape the results. When plotted, the residuals between the actual and predicted have a negative trend. 
+
+### Actual vs. Predicted Sharpe's Ratios
+```{r, echo = F}
+# Simpler scatter plots using quantiles to identify confidence intervals
+p <- ggplot(results, aes(predicted, actual)) +
+    geom_point() + 
+    ggtitle("Actual vs. Predicted Sharpe's Ratios") + 
+    geom_quantile(quantiles = c(0.01, 0.99)) + 
+    geom_quantile(quantiles = 0.5, linetype = "longdash") +
+    geom_density_2d(colour = "red")
+ggplotly(p)
+```
+
+***
+<b> Explanation of Process: </b>
+using `ggplot`, we were able to plot the actual and predicted sharpe's ratios in order to compare the two. We use `geom_density` to show the clustering of the Sharpe's Ratio points. 
+
+###Conclusions
+<font size = "4">
+<b> Conclusions: </b>
+
+Cryptocurrencies are a relatively new commodity in the market place. From the analysis of volatities, cryptocurrencies are relativelt volatile. Bitcoin is the least volatile and has also been in the market place the longest of thee cryptocurrencies. By examining the historical price data of cryptocurrencies, there has been a positive growth in cryptocurrencies. There is risk with the volatility of cryptocurrency in generally. Bitcoin has the lowest risk and highest likilihood for positive returns. Bitcoin is also the most expensive cryptocurrency. Ripple is the lowest cost of the cryptocurrencies; however, it would require the acquisition of far more units of Ripple tobe equivalent to Bitcoin.To mitigate risk, I would recommend that my client not invest in Ethereum. Ethereum is the most volalitile with highest risk and lowest returns. Ethereum is the newest of the three currencies and has not had as much time a Bitcoin to gain stabilization. If my client felt comfortable with the risks associated with investing in cryptocurrency, I would recommend that the company invest primarily in Bitcoin with a small portion of the portofolio to include Ripple. Overall, Bitcoin is the least risky investiment.
+
+</font>
+
+
+
+### References
+
+<b>References:</b>
+
+Foote, W. (2018). Financial Engineering Analytics: A Practice Manual Using R (Vol. 1.3).
+https://bookdown.org/wfoote01/faur/
+<br></br>
+
+Hayes, A. (2017, November 17). Sharpe Ratio. Retrieved from https://www.investopedia.com/terms/s/sharperatio.asp
+<br></br>
+
+Kumar, S. R. Cryptocurrency Historical Prices. Retrieved from https://www.kaggle.com/sudalairajkumar/cryptocurrencypricehistory
+*data set used for project is a subset of Kumar's Kaggle data set
+<br></br>
+
+Pollock, D. Five Bitcoin Crashes and What You Can Learn From Them. Retrieved from 
+https://cointelegraph.com/news/five-bitcoin-crashes-and-what-you-can-learn-from-them
+<br></br>
+
+Staff, I. (2018, June 18). Efficient Frontier. Retrieved from https://www.investopedia.com/terms/e/efficientfrontier.asp
+<br></br>
+
+The Harry Markowitz Model & MPT Assumptions. Retrieved from https://www.ifcm.capital/modern-portfolio-theory/harry-markowitz-model/
+
+
+
+
+
+
+
