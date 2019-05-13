@@ -1,5 +1,5 @@
 # AppliedDataSciencePortfolio
----
+
 ## Portfolio Overview
 
 Data science is a broad field of study that includes a multitude of techniques to create meaning from data. The need for data
