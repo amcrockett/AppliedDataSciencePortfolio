@@ -135,15 +135,17 @@ The next steps was to get our data into a useable format. This required a few pa
 ripper_tall <- ripper %>%
   gather(word = 3:525, value = freq)
 
-Jripper <- ripper_tall %>%
-  filter(author == "Jack the Ripper")
+Jripper <- subset(ripper_tall, author == "Jack the Ripper")
+  #ripper_tall %>%
+  #filter(author == "Jack the Ripper")
 
 Jripper <- Jripper[,-2]
 
 Jripper <- aggregate(. ~ author + key, data = Jripper, sum)
 
-Jripper <- Jripper %>%
-  filter(freq != 0)
+Jripper <- subset(Jripper, freq != 0)
+  #Jripper %>%
+  #filter(freq != 0)
 
 Jripper$freq <- Jripper$freq * 100
 

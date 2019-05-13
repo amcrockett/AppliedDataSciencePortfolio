@@ -1,3 +1,4 @@
+beer_id,brewery_id,beer_name,beer_type,abv,seasonality
 1,1,Schafly Pilsner,Pilsner,5,Year-Round
 3,1,Schafly Kolsch,Kolsch,4.8,Year-Round
 4,1,Schafly Pale Ale,Pale Ale,4.4,Year-Round
